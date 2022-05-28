@@ -4,13 +4,13 @@ const { User } = require('../models/User');
 const { Item } = require('../models/Item');
 
 router.get('/', (req, res) => {
-    Item.findOne({ userFrom: req.query.userFrom, createdAt: req.query.timestamp }, (err, item) => {
+    Item.findOne({ _id: req.query._id }, (err, item) => {
         if (err) {
             return res.status(400).send(err);
         } else {
             return res.status(200).json({
                 success: true,
-                list: item,
+                item: item,
             });
         }
     });

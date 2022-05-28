@@ -12,7 +12,7 @@ const Record = styled.button`
     border-radius: 5px;
     cursor: pointer;
     width: 80%;
-    height: 90px;
+    height: 170px;
     margin: 1.7rem auto;
     display: flex;
 
@@ -42,8 +42,8 @@ function RecordingList(props) {
             for (var i = 0; i < response.data.list.length; i++) {
                 var usertemp = (' ' + response.data.list[i]["userFrom"]).slice(1);
                 var datetemp = (' ' + response.data.list[i]["createdAt"]).slice(1);
-                console.log([usertemp, datetemp]);
-                var temp = (usertemp+'_'+datetemp).replace(/:/g,"")+'.png';
+                var idtemp = (' ' + response.data.list[i]["_id"]).slice(1);
+                var temp = (usertemp+'_'+datetemp).replace(/:/g,"")+'.png'+'?'+idtemp;
                 setRecordTimeList(list => [...list, temp]);
             }
         });
@@ -52,16 +52,16 @@ function RecordingList(props) {
     const onSubmitHandler = (event) => {
         event.preventDefault();
         
-        props.history.push('/home');
+        props.history.push('/');
     };
 
-    const onReportHandler = (event, datetime) => {
+    const onReportHandler = (event, itemId) => {
         event.preventDefault();
 
         props.history.push({
             pathname: '/report',
             state: {
-                date: datetime,
+                itemId: itemId,
                 userFrom: localStorage.getItem('userId')
             }
         });
@@ -74,30 +74,24 @@ function RecordingList(props) {
     return (
         <div className="recordingList">
             <div className="simpleNavi">
-                <img src={logo} alt="logo" onClick={onHomeClickHandler} role="button" />
+                <img style={{marginLeft:'2vw'}} src={logo} alt="logo" onClick={onHomeClickHandler} role="button" />
             </div>
             <div className="list_board">
                 <div className="question">
-                    <h1 className="title">나의 스피치 기록</h1>
+                    <h1 className="title">내 사진 목록</h1>
                 </div>
                 <div className="list">
-                    {recordTimeList?.map((userdate,idx) => (
-                        <form key={idx} onSubmit={(event) => onReportHandler(event,userdate)}>
-                            <Record type="submit" userdate={userdate}>
-                                {/* <span className="date" id="recording_date">
-                                    {datetime.substring(0, 10)}
-                                </span>
-                                <span className="time" id="recording_time">
-                                    {datetime.substring(11, 19)}
-                                </span> */}
-                                <img id="captured" src={userdate} alt="test-ilustartion" />
+                    {recordTimeList?.map((imgSource, idx) => (
+                        <form key={idx} onSubmit={(event) => onReportHandler(event, imgSource.split('?')[1])}>
+                            <Record type="submit" imgSource={imgSource.split('?')[0]}>
+                                <img id="captured" src={imgSource.split('?')[0]} alt="test-ilustartion" />
                             </Record>
                         </form>
                     ))}
                 </div>
                 <div className="stopButton" id="end">
-                    <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onSubmitHandler}>
-                        <button type="submit">끝내기</button>
+                    <form style={{ display: 'flex', flexDirection: 'column', width: 'fit-content', margin: 'auto' }} onSubmit={onSubmitHandler}>
+                        <button id="btnCapture" type="submit">뒤로 가기</button>
                     </form>
                 </div>
             </div>

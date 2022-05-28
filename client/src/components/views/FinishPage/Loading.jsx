@@ -19,7 +19,7 @@ function Loading(props){
                 });
             })
             .then(() =>
-                sleep(20000).then(() =>
+                sleep(50000).then(() =>
                     props.history.push({
                         pathname: '/finish',
                         state: {
