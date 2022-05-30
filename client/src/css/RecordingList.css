@@ -43,3 +43,35 @@
     width: 57%;
     margin: auto;
 }
+
+#captured {
+    position: relative;
+    margin-top: 10px;
+    display: block;
+    /* margin-left: 90px; */
+    width: auto;
+    height: 150px;
+}
+
+.stopButton {
+    width: 910px;
+    float: none;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0;
+    height: 60px;
+    position: fixed;
+    bottom: 3%;
+}
+
+.stopButton #btnCapture {
+    cursor: pointer;
+    background-color: #C54AC7;
+    color: papayawhip;
+    width: 120px;
+    height: 60px;
+    border: none;
+    font-size: 2rem;
+    border-radius: 5px;
+    font-family: 'CookieRunOTF-Bold';
+}

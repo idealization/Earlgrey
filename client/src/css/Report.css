@@ -234,6 +234,7 @@
     width: 120px;
     height: 60px;
     border: none;
+    display: block;
     font-size: 2rem;
     border-radius: 5px;
     font-family: 'CookieRunOTF-Bold';
