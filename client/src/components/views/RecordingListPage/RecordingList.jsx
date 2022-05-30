@@ -51,7 +51,6 @@ function RecordingList(props) {
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
-        
         props.history.push('/');
     };
 
