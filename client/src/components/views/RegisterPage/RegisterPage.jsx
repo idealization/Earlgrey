@@ -1,29 +1,50 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../../../_actions/user_action';
 import { withRouter } from 'react-router-dom';
 import Navbar from '../NavBar/NavBar';
 
 function RegisterPage(props) {
-    const [Nickname, setNickname] = useState('');
+    const dispatch = useDispatch();
 
-    const onNicknameHandler = (event) => {
-        setNickname(event.currentTarget.value);
+    const [Email, setEmail] = useState('');
+    const [Name, setName] = useState('');
+    const [Password, setPassword] = useState('');
+    const [ConfirmPassword, setConfirmPassword] = useState('');
+
+    const onEmailHandler = (event) => {
+        setEmail(event.currentTarget.value);
+    };
+
+    const onNameHandler = (event) => {
+        setName(event.currentTarget.value);
+    };
+
+    const onPasswordHandler = (event) => {
+        setPassword(event.currentTarget.value);
+    };
+
+    const onConfirmPasswordHandler = (event) => {
+        setConfirmPassword(event.currentTarget.value);
     };
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
 
+        if (Password !== ConfirmPassword) {
+            return alert('비밀번호와 비밀번호 확인은 같아야 합니다.');
+        }
+
         let body = {
-            nickname: Nickname,
-            firebaseId: props.location.state.firebaseId
+            email: Email,
+            name: Name,
+            password: Password,
         };
 
-        axios.post('/api/users/register', body).then((response) => {
-            console.log(body, response.data);
-            if (response.data.success) {
-                localStorage.setItem('userId', response.data.user._id);
-                props.history.push('/');
+        dispatch(registerUser(body)).then((response) => {
+            if (response.payload.success) {
+                props.history.push('/login');
             } else {
                 alert('Failed to sign up');
             }
@@ -45,8 +66,20 @@ function RegisterPage(props) {
                 <Navbar/>
                 <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onSubmitHandler}>
                     <div className="row pdB">
-                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">닉네임</label>
-                        <input type="text" className="form-control" value={Nickname} onChange={onNicknameHandler} />
+                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">이메일</label>
+                        <input type="email" className="form-control" value={Email} onChange={onEmailHandler} />
+                    </div>
+                    <div className="row pdB">
+                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">이름</label>
+                        <input type="text" className="form-control" value={Name} onChange={onNameHandler} />
+                    </div>
+                    <div className="row pdB">
+                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">비밀번호</label>
+                        <input type="password" className="form-control" value={Password} onChange={onPasswordHandler} />
+                    </div>
+                    <div className="row">
+                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">비밀번호 확인</label>
+                        <input type="password" className="form-control" value={ConfirmPassword} onChange={onConfirmPasswordHandler} />
                     </div>
                     <br />
                     <button type="submit" className="btn btn-primary">회원 가입</button>

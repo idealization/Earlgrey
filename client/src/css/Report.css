@@ -1,5 +1,5 @@
 .report{
-    background-color:#c2dbfe;
+    background-color:#e0e0e0;
     background-size: cover;
     height: 100vh;
     overflow: hidden;
@@ -13,7 +13,7 @@
     padding: auto;
     margin: 0px auto;
     border-radius: 10px;
-    background-color: #c2dbfe;
+    background-color: #e0e0e0;
     padding-top: 1%;
     padding-bottom: 5rem;
     overflow: hidden;

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import LandingPage from './components/views/LandingPage/LandingPage';
 import LoginPage from './components/views/LoginPage/LoginPage';
 import RegisterPage from './components/views/RegisterPage/RegisterPage';
+import GoogleRegisterPage from './components/views/RegisterPage/GoogleRegisterPage';
 import Run from './components/views/RunPage/Run';
 import Loading from './components/views/FinishPage/Loading';
 import Finish from './components/views/FinishPage/Finish';
@@ -21,6 +22,7 @@ function App() {
                     <Route exact path="/" component={Auth(LandingPage, null)} />
                     <Route exact path="/login" component={Auth(LoginPage, false)} />
                     <Route exact path="/register" component={RegisterPage} />
+                    <Route exact path="/google_register" component={GoogleRegisterPage} />
                     <Route exact path="/home" component={Auth(Home, true)} />
                     <Route exact path="/run" component={Auth(Run, true)} />
                     <Route exact path="/loading" component={Auth(Loading, true)} />
