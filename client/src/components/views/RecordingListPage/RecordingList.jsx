@@ -66,7 +66,8 @@ function RecordingList(props) {
         });
     };
 
-    const onHomeClickHandler = () => {
+    const onHomeClickHandler = (event) => {
+        event.preventDefault();
         props.history.push('/');
     };
 

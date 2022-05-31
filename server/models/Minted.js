@@ -3,11 +3,18 @@ const Schema = mongoose.Schema;
 
 const mintedSchema = mongoose.Schema(
 {
-    userFrom: {
+    createdUser: {
         type: Schema.Types.ObjectID,
         ref: 'User',
     },
     createdAt: {
+        type: String,
+    },
+    mintedUser: {
+        type: Schema.Types.ObjectID,
+        ref: 'User',
+    },
+    mintedAt: {
         type: String,
     },
     imageUrl: {

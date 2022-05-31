@@ -3,10 +3,15 @@ import axios from 'axios';
 import logo from '../../../img/logo.png'
 import '../../../css/Report.css'
 import { withRouter } from 'react-router-dom';
+import 'moment-timezone';
+import moment from 'moment';
 
 function Report(props){
     const [userFrom, setUserFrom] = useState();
-    const [date, setDate] = useState();
+    const [createdUser, setCreatedUser] = useState();
+    const [createdAt, setCreatedAt] = useState();
+    const [mintedUser, setMintedUser] = useState();
+    const [mintedAt, setMintedAt] = useState();
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
@@ -14,7 +19,7 @@ function Report(props){
         const itemId = props.location.state.itemId;
         const userFrom = props.location.state.userFrom;
         
-        axios.get('/api/items/', {
+        axios.get('/api/minteds/', {
             params: {
                 _id: itemId
             },
@@ -24,25 +29,32 @@ function Report(props){
                 alert('발표 태도 분석을 불러오는 데 실패했습니다.');
             }
             setUserFrom(userFrom);
-            setDate(response.data.item.createdAt);
+            setCreatedUser(response.data.createdUser);
+            setCreatedAt(response.data.createdAt);
+            setMintedUser(response.data.mintedUser);
+            setMintedAt(response.data.mintedAt);
+            setTitle(response.data.title);
+            setContent(response.data.content);
         });
     }, []);
 
-    const onTitleHandler = (event) => {
-        setTitle(event.currentTarget.value);
-    };
-    
-    const onContentHandler = (event) => {
-        setContent(event.currentTarget.value);
-    };
-
-    const onSubmitHandler = (event) => {
+    const onHomeClickHandler = (event) => {
         event.preventDefault();
-        props.history.push('/list');
+        props.history.push('/');
     };
 
-    const onHomeClickHandler = () => {
-        props.history.push('/');
+    const onBuyingClickHandler = (event) => {
+        event.preventDefault();
+
+        axios.post('/api/minteds/item', {
+            _id: props.location.state.itemId,
+        }).then((response) => {
+            if (response.data.success) {
+                props.history.push('/');
+            } else {
+                alert('실패했습니다.');
+            }
+        });
     };
 
     return (
@@ -52,23 +64,23 @@ function Report(props){
             </div>
             <div className="list_board">
                 <div className="question">
-                    <h1 className="title">{date}</h1>
+                    <h1 className="title">제목: {title}</h1>
                 </div>
-                <div className="list">
-                    <img id="captured" src={(userFrom+'_'+date).replace(/:/g,"")+'.png'} alt="test-ilustartion" />
-                </div>
-                <div className='box' id='box1'>
-                    <div className='wordcloud'>
-                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">제목</label>
-                        <input type="text" className="form-control" value={title} onChange={onTitleHandler} />
-                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">내용</label>
-                        <input type="text" className="form-control" value={content} onChange={onContentHandler} />
-                    </div>
-                </div>
+                <p>
+                    <img id="captured" src={(userFrom+'_'+createdAt).replace(/:/g,"")+'.png'} alt="test-ilustartion" />
+                </p>
+                <p className='box' id='box1' style={{position: 'fixed', top: '400px', marginLeft: '65px'}}>
+                    <span className='mini-title'>내용: {content}</span>
+                    <span className='mini-title'>사진을 찍은 사람: {createdUser}</span>
+                    <span className='mini-title'>사진을 찍은 날짜: {createdAt}</span>
+                    <span className='mini-title'>NFT를 발행한 사람: {mintedUser}</span>
+                    <span className='mini-title'>NFT를 발행한 날짜: {mintedAt}</span>
+                </p>
                 <div className="stopButton" id="end">
-                    <form style={{ display: 'flex', flexDirection: 'column', width: 'fit-content', margin: 'auto' }} onSubmit={onSubmitHandler}>
-                        <button id="btnCapture" type="submit">목록 보기</button>
+                    <form style={{ display: 'flex', flexDirection: 'column', width: 'fit-content', margin: 'auto' }}>
+                        <button type="submit" onClick={onHomeClickHandler} id="btnCapture" style={{marginLeft: '20vh'}}>뒤로 가기</button>
                     </form>
+                    <button id="btnCapture" onClick={(event) => onBuyingClickHandler(event)} style={{marginRight: '20vh'}}>구매하기</button>
                 </div>
             </div>
         </div>

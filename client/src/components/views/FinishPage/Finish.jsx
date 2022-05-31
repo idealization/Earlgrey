@@ -70,8 +70,8 @@ function Finish(props) {
                     </div>
                 </div>
                 <div className='content' id="finish_ctn">
-                    <div id="capdiv">
-                        <img id="captured" src="cartoon_image.png" alt="test-ilustartion" />
+                    <div id="itemdiv">
+                        <img id="item" src="cartoon_image.png" alt="test-ilustartion" />
                     </div>
                     <div className="stopButton">
                         <button id="btnCapture" onClick={onRunClickHandler}>

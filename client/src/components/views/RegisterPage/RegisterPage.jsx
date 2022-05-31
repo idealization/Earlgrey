@@ -5,6 +5,7 @@ import { registerUser } from '../../../_actions/user_action';
 import { withRouter } from 'react-router-dom';
 import Navbar from '../NavBar/NavBar';
 import '../../../css/landingPage.css';
+import "../../../css/LoginPage.css";
 
 function RegisterPage(props) {
     const dispatch = useDispatch();
@@ -68,7 +69,7 @@ function RegisterPage(props) {
                     <div className="site-wrapper-inner">
                         <div className="cover-container">
                             <Navbar/>
-                            <div className="inner cover">
+                            <div className="inner cover group-2 overlap-group2">
                                 <form style={{ margin: 'auto', display: 'flex', flexDirection: 'column' }} onSubmit={onSubmitHandler}>
                                     <p style={{ margin: 'auto', width: '300px' }}>
                                         <label htmlFor="colFormLabelLg" className="col-form-label text-body">이메일</label>
@@ -87,12 +88,16 @@ function RegisterPage(props) {
                                         <input type="password" className="form-control" value={ConfirmPassword} onChange={onConfirmPasswordHandler} />
                                     </p>
                                     <br />
-                                    <button style={{ margin: 'auto', width: '300px' }} type="submit" className="btn btn-primary">회원 가입</button>
+                                    <button style={{ margin: 'auto', width: '300px' }} type="submit" className="btn regbtn">S i g n    U p</button>
                                 </form>
                             </div>
+
                         </div>
+                        <div className="loginx2022-cau-capstone-design-_-cft">@ 2022 CAU capstone design _ CFT</div>
                     </div>
+
                 </div>
+
             </div>
         </body>
     );

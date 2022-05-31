@@ -7,7 +7,7 @@ function Footer(){
         <div className="mastfoot">
             <div className="inner">
                 <p>
-                    by{' '}<a href="https://github.com/idealization">CFT Team</a>.
+                    by{' '}<a href="https://github.com/idealization/Earlgrey">CFT Team</a>.
                 </p>
             </div>
         </div>

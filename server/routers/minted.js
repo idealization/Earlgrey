@@ -5,31 +5,77 @@ const { Item } = require('../models/Item');
 const { Minted } = require('../models/Minted');
 
 router.get('/', (req, res) => {
-    Minted.findOne({ _id: req.query._id }, (err, item) => {
-        if (err) {
-            return res.status(400).send(err);
-        } else {
-            return res.status(200).json({
-                success: true,
-                item: item,
-            });
-        }
+    Minted.findOne({ _id: req.query._id }, (err, minted) => {
+        User.findOne({ _id: minted.createdUser }, (err, createdUser) => {
+            if (err) {
+                return res.status(400).send(err);
+            } else {
+                User.findOne({ _id: minted.mintedUser }, (err, mintedUser) => {
+                    if (err) {
+                        return res.status(400).send(err);
+                    } else {
+                        return res.status(200).json({
+                            success: true,
+                            createdUser: createdUser.name,
+                            createdAt: minted.createdAt,
+                            mintedUser: mintedUser.name,
+                            mintedAt: minted.mintedAt,
+                            title: minted.title,
+                            content: minted.content
+                        });
+                    }
+                })
+            }
+        })
     });
 });
 
 router.post('/', (req, res) => {
-    const minted = new Minted(req.body);
+    Item.findOneAndDelete({ _id: req.body._id }, (err, item) => {
+        if (err) {
+            return res.status(400).send(err);
+        } else {
+            const minted = new Minted({
+                createdUser: item.userFrom,
+                createdAt: item.createdAt,
+                mintedUser: req.body.mintedFrom,
+                mintedAt: req.body.mintedAt,
+                title: req.body.title,
+                content: req.body.content
+            });
+        
+            minted.save((err, mintedInfo) => {
+                if (err) return res.json({ success: false, err });
+                return res.status(200).json({
+                    success: true,
+                });
+            });
+        }
+    })
+});
 
-    minted.save((err, mintedInfo) => {
-        if (err) return res.json({ success: false, err });
-        return res.status(200).json({
-            success: true,
-        });
-    });
+router.post('/item', (req, res) => {
+    Minted.findOneAndDelete({ _id: req.body._id }, (err, minted) => {
+        if (err) {
+            return res.status(400).send(err);
+        } else {
+            const item = new Item({
+                userFrom: minted.createdUser,
+                createdAt: minted.createdAt
+            });
+        
+            item.save((err, itemInfo) => {
+                if (err) return res.json({ success: false, err });
+                return res.status(200).json({
+                    success: true,
+                });
+            });
+        }
+    })
 });
 
 router.get('/list', (req, res) => {
-    Minted.find({ userFrom: req.query.userFrom }, (err, list) => {
+    Minted.find({ }, (err, list) => {
         if (err) {
             return res.status(400).send(err);
         } else {
