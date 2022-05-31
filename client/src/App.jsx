@@ -13,6 +13,7 @@ import RecordingList from './components/views/RecordingListPage/RecordingList';
 import Report from './components/views/ReportPage/Report';
 import Home from './components/views/HomePage/Home';
 import Auth from './hoc/auth';
+import Foot from "./components/views/Footer/Footer";
 import './css/App.css';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                     <Route exact path="/finish" component={Auth(Finish, true)} />
                     <Route exact path="/list" component={Auth(RecordingList, true)} />
                     <Route exact path="/report" component={Auth(Report, true)} />
+                    {/*<Route exact path="/footer" component={Auth(Foot, true)} />*/}
                 </Switch>
             </div>
         </Router>

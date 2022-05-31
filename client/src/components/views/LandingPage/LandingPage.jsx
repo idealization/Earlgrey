@@ -7,6 +7,7 @@ import Foot from '../Footer/Footer';
 import Navbar from '../NavBar/NavBar';
 import styled from 'styled-components';
 import { darken, lighten } from 'polished';
+import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 
 const Item = styled.button`
     outline: none;
@@ -76,6 +77,11 @@ function LandingPage(props) {
                     <div className="site-wrapper-inner">
                         <div className="cover-container">
                             <Navbar />
+                            <div className="group-3">
+                            <ul className="group-3-item">About</ul>
+                            <ul className="group-3-item" onClick={onStartClickHandler}>Making NFTs</ul>
+                            <ul className="group-3-item" onClick={onListClickHandler}>My page</ul>
+                            </div>
                             <div className="inner cover">
                                 <p className="title-land">
                                     내 얼굴로 만드는 NFT
@@ -110,9 +116,24 @@ function LandingPage(props) {
                             </div>
                             <Foot />
                         </div>
+
                     </div>
+
                 </div>
+                <div className="footerback">
+                 <Foot
+                              title="EarlGrey"
+                              generatingMyFaceIllustNfts="Generating My face Illust  NFTs"
+                              projectBy="Project By"
+                              name="Lee sanghwa"
+                              yimYerin="& Yim yerin"
+                              httpsGithubComI="https://github.com/idealization/Earlgrey"
+                              x2022CauCapstoneDesign_Cft="@ 2022 CAU capstone design_CFT"
+                              />
             </div>
+            </div>
+
+
         </div>
     );
 }

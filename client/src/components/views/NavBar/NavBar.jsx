@@ -46,6 +46,15 @@ function Navbar(props) {
         }
     };
 
+    const onStartClickHandler = () => {
+        props.history.push('/run');
+    };
+
+    const onListClickHandler = () => {
+        props.history.push('/list');
+    };
+
+
     return (
         <div className="masthead clearfix">
             <div className="inner">
@@ -55,6 +64,11 @@ function Navbar(props) {
                 </div>
                 <nav>
                     <ul className="nav masthead-nav">
+                        {/*<div className="group-3">*/}
+                        {/*    <li className="group-3-item">About</li>*/}
+                        {/*    <li className="group-3-item" onClick={onStartClickHandler}>Making NFTs</li>*/}
+                        {/*    <li className="group-3-item" onClick={onListClickHandler}>My page</li>*/}
+                        {/*</div>*/}
                         <li className="active">
                             <button className="fs-3 li-a" id="list-3" onClick={onLoginClickHandler} style={{color:'black'}}>
                                 {isLogin ? '로그아웃' : '로그인   '}
