@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { registerUser } from '../../../_actions/user_action';
 import { withRouter } from 'react-router-dom';
 import Navbar from '../NavBar/NavBar';
+import '../../../css/landingPage.css';
 
 function RegisterPage(props) {
     const dispatch = useDispatch();
@@ -60,30 +61,38 @@ function RegisterPage(props) {
                     justifyContent: 'center',
                     alignItems: 'center',
                     width: '100%',
-                    height: '100vh',
+                    height: '100vh'
                 }}
             >
-                <Navbar/>
-                <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onSubmitHandler}>
-                    <div className="row pdB">
-                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">이메일</label>
-                        <input type="email" className="form-control" value={Email} onChange={onEmailHandler} />
+                <div className="site-wrapper ">
+                    <div className="site-wrapper-inner">
+                        <div className="cover-container">
+                            <Navbar/>
+                            <div className="inner cover">
+                                <form style={{ margin: 'auto', display: 'flex', flexDirection: 'column' }} onSubmit={onSubmitHandler}>
+                                    <p style={{ margin: 'auto', width: '300px' }}>
+                                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">이메일</label>
+                                        <input type="email" className="form-control" value={Email} onChange={onEmailHandler} />
+                                    </p>
+                                    <p style={{ margin: 'auto', width: '300px' }}>
+                                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">이름</label>
+                                        <input type="text" className="form-control" value={Name} onChange={onNameHandler} />
+                                    </p>
+                                    <p style={{ margin: 'auto', width: '300px' }}>
+                                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">비밀번호</label>
+                                        <input type="password" className="form-control" value={Password} onChange={onPasswordHandler} />
+                                    </p>
+                                    <p style={{ margin: 'auto', width: '300px' }}>
+                                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">비밀번호 확인</label>
+                                        <input type="password" className="form-control" value={ConfirmPassword} onChange={onConfirmPasswordHandler} />
+                                    </p>
+                                    <br />
+                                    <button style={{ margin: 'auto', width: '300px' }} type="submit" className="btn btn-primary">회원 가입</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                    <div className="row pdB">
-                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">이름</label>
-                        <input type="text" className="form-control" value={Name} onChange={onNameHandler} />
-                    </div>
-                    <div className="row pdB">
-                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">비밀번호</label>
-                        <input type="password" className="form-control" value={Password} onChange={onPasswordHandler} />
-                    </div>
-                    <div className="row">
-                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">비밀번호 확인</label>
-                        <input type="password" className="form-control" value={ConfirmPassword} onChange={onConfirmPasswordHandler} />
-                    </div>
-                    <br />
-                    <button type="submit" className="btn btn-primary">회원 가입</button>
-                </form>
+                </div>
             </div>
         </body>
     );

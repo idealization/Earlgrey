@@ -5,13 +5,36 @@ import '../../../css/landingPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Foot from '../Footer/Footer';
 import Navbar from '../NavBar/NavBar';
+import styled from 'styled-components';
+import { darken, lighten } from 'polished';
+
+const Item = styled.button`
+    outline: none;
+    border: outset;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 170px;
+    height: 170px;
+    margin: 10px;
+    display: flex;
+    float: left;
+
+    background: #FFFFFF;
+
+    &:hover {
+        background: ${lighten(0.05, '#E7F4F8')};
+    }
+    &:active {
+        background: ${darken(0.05, '#E7F4F8')};
+    }
+`;
 
 function LandingPage(props) {
 
     const [itemList, setItemList] = useState([]);
 
     useEffect(() => {
-        axios.get('/api/items/list/all', {}).then((response) => {
+        axios.get('/api/minteds/list/', {}).then((response) => {
             if (response.data.success) {
             } else {
                 alert('사진 목록을 불러오는 데 실패했습니다.');
@@ -34,6 +57,18 @@ function LandingPage(props) {
         props.history.push('/list');
     };
 
+    const onItemHandler = (event, itemId) => {
+        event.preventDefault();
+
+        props.history.push({
+            pathname: '/report',
+            state: {
+                itemId: itemId,
+                userFrom: localStorage.getItem('userId')
+            }
+        });
+    };
+
     return (
         <div id="htmlID">
             <div className="bg-primary bg-opacity-25" id="bodyID" >
@@ -51,7 +86,7 @@ function LandingPage(props) {
                                 <p>
                                     <span>
                                         <button className="btn btn-lg btn-default startBtn" onClick={onStartClickHandler}>
-                                            시작하기
+                                            사진 찍기
                                         </button>
                                     </span>
                                     <span>
@@ -60,8 +95,18 @@ function LandingPage(props) {
                                         </button>
                                     </span>
                                 </p>
-                            </div>
-                            <div>
+                                <br></br>
+                                <div className='item-board'>
+                                    {itemList.map((imgSource, idx) => (
+                                        <form key={idx} onSubmit={(event) => onItemHandler(event, imgSource.split('?')[1])}>
+                                            <span>
+                                                <Item type="submit" imgSource={imgSource.split('?')[0]}>
+                                                    <img id="captured" src={imgSource.split('?')[0]} alt="test-ilustartion" />
+                                                </Item>
+                                            </span>
+                                        </form>
+                                    ))}
+                                </div>
                             </div>
                             <Foot />
                         </div>

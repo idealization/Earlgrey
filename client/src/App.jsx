@@ -2,6 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import LandingPage from './components/views/LandingPage/LandingPage';
+import MintedPage from './components/views/LandingPage/MintedPage';
 import LoginPage from './components/views/LoginPage/LoginPage';
 import RegisterPage from './components/views/RegisterPage/RegisterPage';
 import GoogleRegisterPage from './components/views/RegisterPage/GoogleRegisterPage';
@@ -20,9 +21,10 @@ function App() {
             <div>
                 <Switch>
                     <Route exact path="/" component={Auth(LandingPage, null)} />
+                    <Route exact path="/minted" component={Auth(MintedPage, null)} />
                     <Route exact path="/login" component={Auth(LoginPage, false)} />
-                    <Route exact path="/register" component={RegisterPage} />
-                    <Route exact path="/google_register" component={GoogleRegisterPage} />
+                    <Route exact path="/register" component={Auth(RegisterPage, false)} />
+                    <Route exact path="/google_register" component={Auth(GoogleRegisterPage, false)} />
                     <Route exact path="/home" component={Auth(Home, true)} />
                     <Route exact path="/run" component={Auth(Run, true)} />
                     <Route exact path="/loading" component={Auth(Loading, true)} />

@@ -47,19 +47,6 @@ router.get('/list', (req, res) => {
     });
 });
 
-router.get('/list/all', (req, res) => {
-    Item.find({}, (err, list) => {
-        if (err) {
-            return res.status(400).send(err);
-        } else {
-            return res.status(200).json({
-                success: true,
-                list: list,
-            });
-        }
-    });
-});
-
 router.get('/user', (req, res) => {
     User.findOne({ _id: req.query.userFrom }, (err, user) => {
         if (err) {

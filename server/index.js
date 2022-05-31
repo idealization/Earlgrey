@@ -24,3 +24,4 @@ app.listen(port, () => {
 app.use('/api/users', require('./routers/user'));
 app.use('/api/images', require('./routers/image'));
 app.use('/api/items', require('./routers/item'));
+app.use('/api/minteds', require('./routers/minted'));

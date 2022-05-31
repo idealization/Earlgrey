@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import logo from '../../../img/logo.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../css/Navi.css'
 import { withRouter } from 'react-router-dom';
-import { authService, firebaseInstance } from '../../../fBase';
+import { useDispatch } from 'react-redux';
+import { auth } from '../../../_actions/user_action';
 
 function Navbar(props) {
     const [isLogin, setIsLogin] = useState(false);
-    const user = authService.currentUser;
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        if (!user) {
-            setIsLogin(false);
-        } else {
-            setIsLogin(true);
+        let c = true
+        dispatch(auth()).then((response) => {
+            if (c){
+                if (!response.payload.isAuth) {
+                    setIsLogin(false);
+                } else {
+                    setIsLogin(true);
+                }
+            }
+        });
+        return () => {
+            c = false;
         }
     }, [])
 
@@ -23,11 +33,14 @@ function Navbar(props) {
 
     const onLoginClickHandler = async () => {
         if (isLogin) {
-            authService.signOut().then(() => {
-                setIsLogin(false);
-            }).catch((error) => {
-                console.log(error);
-            })
+            axios.get('/api/users/logout').then((response) => {
+                if (response.data.success) {
+                    alert('로그아웃 되었습니다.');
+                    setIsLogin(false);
+                } else {
+                    alert('로그아웃에 실패했습니다.');
+                }
+            });
         } else {
             props.history.push('/login');
         }

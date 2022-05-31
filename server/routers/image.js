@@ -5,7 +5,7 @@ const { Image } = require('../models/Image');
 router.post('/', (req, res) => {
     const spawn = require('child_process').spawn;
 
-    var process_cartoon = spawn('python', [__dirname+'/photo2cartoon/test.py']);
+    var process_cartoon = spawn('python3', [__dirname+'/photo2cartoon/test.py']);
     process_cartoon.stdout.on('data', function(data) {
         console.log(data.toString());
     });

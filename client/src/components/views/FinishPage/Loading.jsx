@@ -1,25 +1,27 @@
 import React, { useRef, useState, useEffect } from "react";
 import axios from 'axios';
 import logo from '../../../img/logo.png'
-import Jasmine from '../../../img/Jasmine.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { withRouter } from 'react-router-dom';
+import { LinearProgress } from '@mui/material';
 
 function Loading(props){
+    const [progress, setProgress] = useState(0);
+
     function sleep(ms) {
         return new Promise((r) => setTimeout(r, ms));
     }
     useEffect(() => {
-        sleep(2000) // DB 저장 시간
+        setInterval(() => {setProgress(progress => progress + 3)}, 1000);
+        sleep(2000)
             .then(() => {
-                console.log('제발~~');
                 axios.post('/api/images/', {
                     userFrom: props.location.state.userFrom,
                     createdAt: props.location.state.createdAt,
                 });
             })
             .then(() =>
-                sleep(50000).then(() =>
+                sleep(30000).then(() =>
                     props.history.push({
                         pathname: '/finish',
                         state: {
@@ -37,15 +39,13 @@ function Loading(props){
                 <img src={logo} alt="logo" />
             </div>
             <div className="justify-content-center">
-                <div style={{width:'100vw'}}>
-                    <div className="spinner-border text-light" style={{width:'20rem', height: '20rem',margin:'9% auto 0 45%'}} role="status">
-                    </div>
-                </div>
                 <div style={{width:'100%'}}>
                     <div style={{margin:'0 37%'}}>
-                        <img src={Jasmine} alt="jasmine" style={{width: '10rem', height: '10rem'}}/>
-                        <span className="text-light" style={{marginLeft:'2rem',fontSize: '30px',fontWeight: '250',fontFamily: 'HSYuji-Regular'}}>잠시만 기다려주세요.</span>
+                        <span style={{marginLeft:'2rem',fontSize: '30px',fontWeight: '250',fontFamily: 'HSYuji-Regular',color: 'black'}}>잠시만 기다려주세요.</span>
                     </div>
+                    <p>
+                        <LinearProgress style={{width:'1000px', height: '1rem', margin: 'auto'}} variant="determinate" value={progress} />
+                    </p>
                 </div>
             </div>
         </div>

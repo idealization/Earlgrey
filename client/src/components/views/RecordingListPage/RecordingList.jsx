@@ -80,7 +80,7 @@ function RecordingList(props) {
                     <h1 className="title">내 사진 목록</h1>
                 </div>
                 <div className="list">
-                    {recordTimeList?.map((imgSource, idx) => (
+                    {recordTimeList.map((imgSource, idx) => (
                         <form key={idx} onSubmit={(event) => onReportHandler(event, imgSource.split('?')[1])}>
                             <Record type="submit" imgSource={imgSource.split('?')[0]}>
                                 <img id="captured" src={imgSource.split('?')[0]} alt="test-ilustartion" />

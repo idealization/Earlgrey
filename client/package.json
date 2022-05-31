@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
     "@fortawesome/fontawesome-free": "^5.15.4",
+    "@mui/material": "^5.8.1",
     "@tensorflow-models/blazeface": "0.0.7",
     "@tensorflow-models/face-landmarks-detection": "^0.0.3",
     "@tensorflow/tfjs": "^3.10.0",

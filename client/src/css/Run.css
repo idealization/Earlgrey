@@ -69,7 +69,7 @@
     width: 100%;
     height: 80px;
     border: none;
-    background-color: #C54AC7;
+    background-color: #D3C9B5;
     border-radius: 10px;
 }
 
@@ -82,8 +82,9 @@
     height:inherit;
     width: fit-content;
     margin: auto;
+    margin-top: 20px;
     line-height: 80px;
-    color: papayawhip;
+    color: black;
     font-family: 'CookieRunOTF-Bold';
 }
 
@@ -93,7 +94,7 @@
     margin: 0;
     padding-left: 10%;
     line-height: 80px;
-    color: papayawhip;
+    color: black;
     font-family: 'CookieRunOTF-Bold';
 }
 
@@ -114,7 +115,7 @@
 #sloth-text {
     margin-top: 30px;
     font-size: 55px;
-    color: #c43abb;
+    color: #969691;
     z-index: 0;
     padding: 0 10px;
     border-radius: 10px;
@@ -131,11 +132,12 @@
     height: 60px;
     position: fixed;
     bottom: 3%;
+    display: flex;
 }
 
 .stopButton #btnCapture {
     cursor: pointer;
-    background-color: #C54AC7;
+    background-color: #D3C9B5;
     color: papayawhip;
     width: 120px;
     height: 60px;
@@ -143,13 +145,14 @@
     font-size: 2rem;
     border-radius: 5px;
     font-family: 'CookieRunOTF-Bold';
+    margin: auto;
 }
 
 .stopButton #btnSelect {
     cursor: pointer;
     /* margin: 0 auto; */
     margin-left: 10px;
-    background-color: #C54AC7;
+    background-color: #D3C9B5;
     color: papayawhip;
     width: 120px;
     height: 60px;
@@ -157,4 +160,6 @@
     font-size: 2rem;
     border-radius: 5px;
     font-family: 'CookieRunOTF-Bold';
+    margin: auto;
+    float: left;
 }

@@ -10,7 +10,7 @@ import { withRouter } from 'react-router-dom';
 const SelectButton = styled(animated.button)`
     cursor: pointer;
     margin-left: 10px;
-    color: papayawhip;
+    color: black;
     width: 120px;
     height: 60px;
     border: none;
@@ -20,12 +20,12 @@ const SelectButton = styled(animated.button)`
     font-family: 'CookieRunOTF-Bold';
 
     /* 색상 */
-    background: #c54ac7;
+    background: #D3C9B5;
     &:hover {
-        background: ${lighten(0.1, '#C54AC7')};
+        background: ${lighten(0.1, '#D3C9B5')};
     }
     &:active {
-        background: ${darken(0.1, '#C54AC7')};
+        background: ${darken(0.1, '#D3C9B5')};
     }
 `;
 

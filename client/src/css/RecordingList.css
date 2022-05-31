@@ -11,7 +11,7 @@
     margin: 10px auto;
     width: 60%;
     height: 80vh;
-    background-color: #B4C6A6;
+    background-color: #F1ECE1;
     border-radius: 10px;
     overflow: auto;
     /* border: aliceblue 6px solid; */
@@ -66,8 +66,8 @@
 
 .stopButton #btnCapture {
     cursor: pointer;
-    background-color: #C54AC7;
-    color: papayawhip;
+    background-color: #D3C9B5;
+    color: black;
     width: 120px;
     height: 60px;
     border: none;

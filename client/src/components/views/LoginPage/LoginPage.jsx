@@ -4,6 +4,7 @@ import { loginUser } from '../../../_actions/user_action';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import Navbar from '../NavBar/NavBar';
+import '../../../css/landingPage.css';
 import { authService, firebaseInstance } from '../../../fBase';
 import googleLogin from '../../../img/btn_google_signin_light_normal_web.png'
 
@@ -81,21 +82,30 @@ function LoginPage(props) {
                     height: '100vh',
                 }}
             >
-                <Navbar/>
-                <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onSubmitHandler}>
-                    <div className="row pdB">
-                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">이메일</label>
-                        <input type="email" className="form-control" value={Email} onChange={onEmailHandler} />
+            <div className="site-wrapper">
+                <div className="site-wrapper-inner">
+                    <div className="cover-container">
+                            <Navbar/>
+                            <div className="inner cover">
+                                <form style={{ margin: 'auto', display: 'flex', flexDirection: 'column', width: '400px' }} onSubmit={onSubmitHandler}>
+                                    <p style={{ margin: 'auto', width: '300px' }}>
+                                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">이메일</label>
+                                        <input type="email" className="form-control" value={Email} onChange={onEmailHandler} />
+                                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">비밀번호</label>
+                                        <input type="password" className="form-control" value={Password} onChange={onPasswordHandler} />
+                                    </p>
+                                    <p style={{ margin: 'auto' }}>
+                                        <button style={{ margin: '10px' }} type="submit" className="btn btn-lg btn-default">로그인</button>
+                                        <button style={{ margin: '10px' }} className="btn btn-lg btn-default" onClick={onRegisterClickHandler}>회원가입</button>
+                                    </p>
+                                    <p style={{ margin: 'auto' }}>
+                                        <img src={googleLogin} onClick={onLoginClickHandler} role="button" />
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                    <div className="row">
-                        <label htmlFor="colFormLabelLg" className="col-form-label text-body">비밀번호</label>
-                        <input type="password" className="form-control" value={Password} onChange={onPasswordHandler} />
-                    </div>
-                    <br />
-                    <button type="submit" className="btn btn-primary">로그인</button>
-                    <button className="btn btn-primary" onClick={onRegisterClickHandler}>회원가입</button>
-                    <img src={googleLogin} onClick={onLoginClickHandler} role="button" />
-                </form>
+                </div>
             </div>
         </div>
     );
