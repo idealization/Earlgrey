@@ -14,6 +14,7 @@ function Report(props){
     const [mintedAt, setMintedAt] = useState();
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [createdUserId, setCreatedUserId] = useState();
 
     useEffect(() => {
         const itemId = props.location.state.itemId;
@@ -29,6 +30,7 @@ function Report(props){
                 alert('발표 태도 분석을 불러오는 데 실패했습니다.');
             }
             setUserFrom(userFrom);
+            setCreatedUserId(response.data.createdUserId);
             setCreatedUser(response.data.createdUser);
             setCreatedAt(response.data.createdAt);
             setMintedUser(response.data.mintedUser);
@@ -48,6 +50,7 @@ function Report(props){
 
         axios.post('/api/minteds/item', {
             _id: props.location.state.itemId,
+            userFrom: userFrom
         }).then((response) => {
             if (response.data.success) {
                 props.history.push('/');
@@ -67,7 +70,7 @@ function Report(props){
                     <h1 className="title">제목: {title}</h1>
                 </div>
                 <p>
-                    <img id="captured" src={(userFrom+'_'+createdAt).replace(/:/g,"")+'.png'} alt="test-ilustartion" />
+                    <img id="captured" src={(createdUserId+'_'+createdAt).replace(/:/g,"")+'.png'} alt="test-ilustartion" />
                 </p>
                 <p className='box' id='box1' style={{position: 'fixed', top: '400px', marginLeft: '65px'}}>
                     <span className='mini-title'>내용: {content}</span>

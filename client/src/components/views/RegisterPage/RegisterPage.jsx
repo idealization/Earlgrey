@@ -54,7 +54,6 @@ function RegisterPage(props) {
     };
 
     return (
-        <body>
             <div
                 className="bg-primary bg-opacity-25"
                 style={{
@@ -71,6 +70,8 @@ function RegisterPage(props) {
                             <Navbar/>
                             <div className="inner cover group-2 overlap-group2">
                                 <form style={{ margin: 'auto', display: 'flex', flexDirection: 'column' }} onSubmit={onSubmitHandler}>
+                                    <div style={{ margin: 'auto', height: '60px'}} className="policy"><p style={{ margin: 'auto', width: '200px', color: 'red'}}><a href="https://www.notion.so/de2a6d463d1f47ddbb51c45896071147" style={{color: 'red'}}>개인정보 처리방침 문서</a></p>
+                                    <p>위 문서를 확인 후 동의할 경우에 회원가입을 진행하시기 바랍니다.</p></div>
                                     <p style={{ margin: 'auto', width: '300px' }}>
                                         <label htmlFor="colFormLabelLg" className="col-form-label text-body">이메일</label>
                                         <input type="email" className="form-control" value={Email} onChange={onEmailHandler} />
@@ -99,7 +100,6 @@ function RegisterPage(props) {
                 </div>
 
             </div>
-        </body>
     );
 }
 

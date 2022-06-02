@@ -150,10 +150,21 @@ a:hover {
  * Footer
  */
 
-.mastfoot {
-  color: #999; /* IE8 proofing */
-  color: rgba(255,255,255,.5);
+ .footerback{
+  background-color: #afafaf;
 }
+/*.footer{*/
+/*  background-color: #afafaf;*/
+/*  height: 200;*/
+/*  position: relative;*/
+/*  transform: translateY(-100%);*/
+/*  object-fit: cover;*/
+/*}*/
+
+/*.mastfoot {*/
+/*  color: #999; !* IE8 proofing *!*/
+/*  color: rgba(255,255,255,.5);*/
+/*}*/
 
 
 /*
@@ -197,4 +208,32 @@ a:hover {
   height: 55vh;
   text-align: center;
   margin: auto;
+}
+/*-- Not Moving Navigator(Landing Page Menu)--*/
+
+.group-3 {
+  align-items: flex-start;
+  display: flex;
+  height: 24px;
+  margin: 33px auto;
+  padding: 15px;
+  width: 650px;
+
+}
+
+
+.group-3-item {
+  list-style:none;
+  color: black;
+  letter-spacing: -0.38px;
+  line-height: 24px;
+  margin-left: 26px;
+  min-height: 24px;
+  text-align: center;
+  white-space: nowrap;
+  width: 173px;
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 20px;
+
 }

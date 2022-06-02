@@ -7,6 +7,10 @@ const itemSchema = mongoose.Schema(
         type: Schema.Types.ObjectID,
         ref: 'User',
     },
+    createdUser: {
+        type: Schema.Types.ObjectID,
+        ref: 'User',
+    },
     createdAt: {
         type: String,
     },

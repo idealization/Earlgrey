@@ -16,6 +16,7 @@ router.get('/', (req, res) => {
                     } else {
                         return res.status(200).json({
                             success: true,
+                            createdUserId: createdUser._id,
                             createdUser: createdUser.name,
                             createdAt: minted.createdAt,
                             mintedUser: mintedUser.name,
@@ -36,7 +37,7 @@ router.post('/', (req, res) => {
             return res.status(400).send(err);
         } else {
             const minted = new Minted({
-                createdUser: item.userFrom,
+                createdUser: item.createdUser,
                 createdAt: item.createdAt,
                 mintedUser: req.body.mintedFrom,
                 mintedAt: req.body.mintedAt,
@@ -60,7 +61,8 @@ router.post('/item', (req, res) => {
             return res.status(400).send(err);
         } else {
             const item = new Item({
-                userFrom: minted.createdUser,
+                userFrom: req.body.userFrom,
+                createdUser: minted.createdUser,
                 createdAt: minted.createdAt
             });
         

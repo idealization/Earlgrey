@@ -40,7 +40,7 @@ function RecordingList(props) {
                 alert('사진 목록을 불러오는 데 실패했습니다.');
             }
             for (var i = 0; i < response.data.list.length; i++) {
-                var usertemp = (' ' + response.data.list[i]["userFrom"]).slice(1);
+                var usertemp = (' ' + response.data.list[i]["createdUser"]).slice(1);
                 var datetemp = (' ' + response.data.list[i]["createdAt"]).slice(1);
                 var idtemp = (' ' + response.data.list[i]["_id"]).slice(1);
                 var temp = (usertemp+'_'+datetemp).replace(/:/g,"")+'.png'+'?'+idtemp;

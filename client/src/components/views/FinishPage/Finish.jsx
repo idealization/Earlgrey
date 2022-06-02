@@ -41,6 +41,7 @@ function Finish(props) {
         axios.post('/api/items/', {
             userFrom: props.location.state.userFrom,
             createdAt: props.location.state.createdAt,
+            createdUser: props.location.state.userFrom,
         }).then((response) => {
             if (response.data.success) {
                 props.history.push('/');

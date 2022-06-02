@@ -11,6 +11,7 @@ function Report(props){
     const [date, setDate] = useState();
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [createdUser, setCreatedUser] = useState();
 
     useEffect(() => {
         const itemId = props.location.state.itemId;
@@ -27,6 +28,7 @@ function Report(props){
             }
             setUserFrom(userFrom);
             setDate(response.data.item.createdAt);
+            setCreatedUser(response.data.item.createdUser);
         });
     }, []);
 
@@ -83,7 +85,7 @@ function Report(props){
                     <h1 className="title">생성 날짜: {date}</h1>
                 </div>
                 <p>
-                    <img id="captured" src={(userFrom+'_'+date).replace(/:/g,"")+'.png'} alt="test-ilustartion" />
+                    <img id="captured" src={(createdUser+'_'+date).replace(/:/g,"")+'.png'} alt="test-ilustartion" />
                 </p>
                 <p className='box' id='box1' style={{position: 'fixed', top: '400px', marginLeft: '65px'}}>
                     <label htmlFor="colFormLabelLg" className="col-form-label text-body">제목</label>
