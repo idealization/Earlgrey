@@ -7,3 +7,4 @@ CAU 2022-1 Capstone Design Project Repository
 - **Yerin Lim**: School of Computer Science & Engineering in CAU   
 
 ## 💡 Prototype
+https://youtu.be/zquiyt_WQU0
