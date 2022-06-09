@@ -6,5 +6,5 @@ CAU 2022-1 Capstone Design Project Repository
 - **Sanghwa Lee**: School of Computer Science & Engineering in CAU   
 - **Yerin Lim**: School of Computer Science & Engineering in CAU   
 
-## 💡 Prototype
+## 💡 Presentation
 https://youtu.be/zquiyt_WQU0
